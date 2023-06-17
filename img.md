@@ -3,6 +3,8 @@
 
 ### 更白 
 * demo   
+![skin_whitening](https://github.com/lix19937/opencv-cookbook/assets/38753233/7a02ea4a-8d32-4ab8-bbcc-2eca9a9fce32)    
+
 
 
 * 干货    
