@@ -71,6 +71,10 @@ https://baijiahao.baidu.com/s?id=1709254995162392699&wfr=spider&for=pc
 
 
 ### 虚拟人    
+* demo  
+
+
+* 干货     
 http://news.sohu.com/a/654039850_441383   
 
 
