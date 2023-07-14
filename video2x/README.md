@@ -3,7 +3,7 @@
 **Note:** For videos more than 15 min of length you might have more than 200 slides in ppt so some Manual deletion might require :( as per your convenience.
 
 This is a command utility to create ppt from the youtube educational video. 
-Specifically designed for youtube channel: `StatQuest with Josh Starmer` :heart:
+Specifically designed for youtube channel: `StatQuest with Josh Starmer` 
 
 I find his works amazing and I wanted to get the slides out from the video so that I can make a note for revision so I decided to write this script using openCV and shell scripting.
 
