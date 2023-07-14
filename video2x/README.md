@@ -1,4 +1,4 @@
-# youtube-video2ppt
+# video2x  
 
 **Note:** For videos more than 15 min of length you might have more than 200 slides in ppt so some Manual deletion might require :( as per your convenience.
 
@@ -39,5 +39,5 @@ then run `bash vid2ppt.sh`
 
 Feel free to contribute.
 
-## Please consider giving :star: if you like it. 😊
+
 
