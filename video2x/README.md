@@ -1,7 +1,8 @@
 # video2x  
 
 ```
-conda create -n name python=  
+conda create -n v2ppt python=
+
 ```
 
 
