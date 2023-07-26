@@ -55,5 +55,5 @@ def proc(fname):
 
 proc(sys.argv[1])
 
-## python ppt_extract.py input/DriveWorks_Image_Module_Samples_.mp4
+## python ppt2img.py input/DriveWorks_Image_Module_Samples_.mp4
 
