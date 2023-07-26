@@ -119,5 +119,5 @@ for i in range(len(videos)):
 
 
 
-## (v2ppt) igs@igs:~/Desktop/ow/youtube-video2ppt-main$
+## (v2ppt) lix19937@lix19937:~/Desktop/video2x$
 # python save_yl_slide.py  -p ./input/
