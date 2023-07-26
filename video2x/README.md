@@ -1,5 +1,10 @@
 # video2x  
 
+```
+conda create -n name python=  
+```
+
+
 **Note:** For videos more than 15 min of length you might have more than 200 slides in ppt so some Manual deletion might require :( as per your convenience.
 
 This is a command utility to create ppt from the youtube educational video. 
