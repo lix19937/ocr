@@ -13,6 +13,9 @@ cv::Mat src_img, gray_img, binary_img;
 
 void on_trackbar(int pos, void*){
 	cv::threshold(gray_img, binary_img, pos, 255, CV_THRESH_BINARY);
+	// cv::threshold(gray_img, binary_img, pos, 255, CV_THRESH_OTSU);
+	// cv::threshold(gray_img, binary_img, pos, 255, CV_THRESH_TRIANGLE);
+
 	cv::imshow("binary", binary_img);
 }
 
