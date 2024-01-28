@@ -9,38 +9,36 @@
  
 using namespace std;
 
-cv::Mat SrcImage, GrayImage, BinaryImage;
+cv::Mat src_img, gray_img, binary_img;
 
 void on_trackbar(int pos, void*){
-	//转化为二值图
-	threshold(GrayImage, BinaryImage, pos, 255, CV_THRESH_BINARY);
-	cv::imshow("二值图", BinaryImage);
+	cv::threshold(gray_img, binary_img, pos, 255, CV_THRESH_BINARY);
+	cv::imshow("binary", binary_img);
 }
 
 void to_gray(){
 	// 创建与原图同类型和同大小的矩阵
-	GrayImage.create(SrcImage.size(), SrcImage.type());
+	gray_img.create(src_img.size(), src_img.type());
   
-	// 将原图转换为灰度图像
-	cvtColor(SrcImage, GrayImage, CV_BGR2GRAY);
+	cv::cvtColor(src_img, gray_img, CV_BGR2GRAY);
 
-	cv::imshow("灰度图", GrayImage);
+	cv::imshow("gray", gray_img);
 }
 
 void creat_trackbar(){
 	int nThreshold = 0;
-	cv::createTrackbar("二值图阈值", "二值图", &nThreshold, 254, on_trackbar);
+	cv::createTrackbar("thres", "binary", &nThreshold, 254, on_trackbar);
 }
 
 int main(){
-	SrcImage = cv::imread("2.bmp");
-	cv::imshow("原图", SrcImage);
-  
+	src_img = cv::imread("2.bmp");
+	cv::imshow("raw", src_img);
+	
 	to_gray();
 	on_trackbar(1, 0);
-  
+	
 	creat_trackbar();
-  
+	
 	waitKey();
   return 0;
 }
