@@ -31,7 +31,7 @@ void creat_trackbar(){
 }
 
 int main(){
-	src_img = cv::imread("2.bmp");
+	src_img = cv::imread("test.jpg");
 	cv::imshow("raw", src_img);
 	
 	to_gray();
