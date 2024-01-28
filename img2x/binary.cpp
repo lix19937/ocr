@@ -7,8 +7,6 @@
 #include "opencv2/imgproc/imgproc.hpp"  
 #include <iostream>  
  
-using namespace std;
-
 cv::Mat src_img, gray_img, binary_img;
 
 void on_trackbar(int pos, void*){
@@ -43,5 +41,5 @@ int main(){
 	creat_trackbar();
 	
 	waitKey();
-  return 0;
+	return 0;
 }
