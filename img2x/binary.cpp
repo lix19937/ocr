@@ -5,7 +5,6 @@
 #include <opencv2/core/core.hpp>  
 #include <opencv2/highgui/highgui.hpp>  
 #include "opencv2/imgproc/imgproc.hpp"  
-#include <iostream>  
  
 cv::Mat src_img, gray_img, binary_img;
 
@@ -18,7 +17,7 @@ void on_trackbar(int pos, void*){
 }
 
 void to_gray(){
-	// 创建与原图同类型和同大小的矩阵
+	// 创建 与原图同类型和同大小的矩阵
 	gray_img.create(src_img.size(), src_img.type());
   
 	cv::cvtColor(src_img, gray_img, CV_BGR2GRAY);
