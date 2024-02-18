@@ -7,6 +7,8 @@
 |`编号:` | 作为模板匹配基准 opencv `matchTemplate` | y_offset <=360 内搜索 |     
 |--- | ----| ----|      
 
+matchTemplate api 对缩放敏感，要求模板图像和待搜索图像的目标图像保持相同的宽高   
+
 |样式1| 样式2|    
 |--- | ----|    
 |![sample.png](sample.png)|![sample1.png](sample1.png)|    
