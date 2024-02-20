@@ -7,4 +7,7 @@
 
 ## 文本定位  
 
+learnopencv-master\TextDetectionEAST   
+
+
 ## 有限域识别    
