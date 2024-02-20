@@ -11,3 +11,7 @@ learnopencv-master\TextDetectionEAST
 
 
 ## 有限域识别    
+
++ 手写数字识别
+
++ 手写符号识别（x √ o -）   
