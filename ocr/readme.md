@@ -20,3 +20,7 @@ learnopencv-master\TextDetectionEAST
 + 手写数字识别
 
 + 手写符号识别（x √ o -）   
+
+
+## Ref   
+https://github.com/PaddlePaddle/PaddleOCR   
