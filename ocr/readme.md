@@ -9,8 +9,13 @@
 
 learnopencv-master\TextDetectionEAST   
 
+## 文本识别   
+
 
 ## 有限域识别    
+
+
+## 手写识别    
 
 + 手写数字识别
 
