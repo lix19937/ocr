@@ -24,3 +24,4 @@ learnopencv-master\TextDetectionEAST
 
 ## Ref   
 https://github.com/PaddlePaddle/PaddleOCR   
+https://github.com/opencv/opencv_zoo/blob/main/models/text_recognition_crnn/demo.py   
