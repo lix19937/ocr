@@ -5,6 +5,7 @@ import math
 import argparse
 
 parser = argparse.ArgumentParser(description='Use this script to run text detection deep learning networks using OpenCV.')
+
 # Input argument
 parser.add_argument('--input', help='Path to input image or video file. Skip this argument to capture frames from a camera.')
 
