@@ -11,4 +11,5 @@ https://github.com/spmallick/learnopencv/tree/master
 
 
 ## OPENCV志愿者   
+https://www.opencv.org.cn/   
 https://www.opencv.org.cn/?page_id=639   
