@@ -11,3 +11,5 @@ cv2.warpAffine(src, M, dsize)
 ```
 其中，src是待处理的图片；M是仿射矩阵，这里用getRotationMatrix2D的返回值；dsize 表示输出图片的大小。    
 
+
+直线检测 https://blog.csdn.net/m0_51233386/article/details/124171578  
