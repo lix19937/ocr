@@ -15,5 +15,6 @@ matchTemplate()只能检测和模板图像大小一样的目标，对于不同�
 https://stackoverflow.com/questions/58158129/understanding-and-evaluating-template-matching-methods  
 
 
-
+https://stackoverflow.com/questions/55884829/multi-scale-template-matching-in-real-time      
+https://stackoverflow.com/questions/55975095/multi-scale-template-matching-doesnt-work-right
  
