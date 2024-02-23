@@ -13,6 +13,9 @@ matchTemplate()只能检测和模板图像大小一样的目标，对于不同�
 针对这样的情况，通过对模板图像和待检测图像提取轮廓图像(减少干扰)，改变待检测图像的大小来实现多尺度的模板匹配算法
 
 
+### 基于特征的匹配   
+
+
 
 https://docs.opencv.org/2.4/doc/tutorials/imgproc/histograms/template_matching/template_matching.html   
 
