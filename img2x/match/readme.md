@@ -16,7 +16,7 @@ matchTemplate()只能检测和模板图像大小一样的目标，对于不同�
 ### 基于特征的匹配   
 
 
-
+## Ref   
 https://docs.opencv.org/2.4/doc/tutorials/imgproc/histograms/template_matching/template_matching.html   
 
 
