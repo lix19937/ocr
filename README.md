@@ -2,13 +2,11 @@
 
 [直播间背后的图像技术 The image process skill behind the live broadcast room](./on_live.md)
 
-# 去字幕  
+## 去字幕  
 https://github.com/YaoFANGUK/video-subtitle-remover/tree/main    
 
-
-
+## 更多  
 https://github.com/spmallick/learnopencv/tree/master    
-
 
 ## OPENCV志愿者   
 https://www.opencv.org.cn/   
