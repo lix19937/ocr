@@ -1,4 +1,6 @@
-# video2x  
+# video2x   
+
+视频拆分为图片    
 
 ```
 conda create -n v2ppt python=
