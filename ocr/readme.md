@@ -21,6 +21,7 @@ learnopencv-master\TextDetectionEAST
 
 + 手写符号识别（x √ o -）   
 
+## 语义矫正    
 
 ## Ref   
 https://github.com/PaddlePaddle/PaddleOCR   
