@@ -1,4 +1,6 @@
 
+# ppt 转换为图片   
+
 import cv2
 import numpy as np
 import os
