@@ -1,4 +1,4 @@
-+ crnn  from pth
++ crnn  from pth     
 https://github.com/meijieru/crnn.pytorch    
 
 + pth2onnx    
@@ -14,7 +14,7 @@ https://github.com/meijieru/crnn.pytorch
   torch.onnx.export(model, dummy_input, "crnn.onnx", verbose=True)
   ```
 
-+ crnn  from onnx   
++ crnn  from onnx & opencv     
 https://github.com/opencv/opencv_zoo/blob/main/models/text_recognition_crnn/demo.py     
 https://github.com/opencv/opencv/blob/4.9.0/samples/dnn/text_detection.py  
 
