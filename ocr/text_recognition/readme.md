@@ -1,7 +1,7 @@
 + crnn  from pth
 https://github.com/meijieru/crnn.pytorch    
 
-pth2onnx   
++ pth2onnx    
 ```
 Text recognition model taken from here: https://github.com/meijieru/crnn.pytorch
 How to convert from pb to onnx:
