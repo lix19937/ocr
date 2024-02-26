@@ -15,9 +15,10 @@
 |![sample.png](sample.png)|![sample1.png](sample1.png)|    
 
 
-精确定制方法      
+## 精确但定制方法      
 ![7-1](7-1.png)   
 
+![7-1-roi.png](7-1-roi.png)    
 
 ```
 pip --version   
