@@ -14,6 +14,11 @@
 |--- | ----|    
 |![sample.png](sample.png)|![sample1.png](sample1.png)|    
 
+
+精确定制方法      
+![7-1](7-1.png)   
+
+
 ```
 pip --version   
 
