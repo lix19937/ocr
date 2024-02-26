@@ -20,8 +20,4 @@
 
 ![7-1-roi.png](7-1-roi.png)    
 
-```
-pip --version   
 
-pip install opencv-python 
-```
