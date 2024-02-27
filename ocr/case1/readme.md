@@ -15,9 +15,13 @@
 |![sample.png](sample.png)|![sample1.png](sample1.png)|    
 
 
-## 精确但定制方法      
+## 精确但定制方法       
++ 有基准特征的   
 ![7-1](7-1.png)   
 
 ![7-1-roi.png](7-1-roi.png)    
+
++ 无基准特征的     
+![40-1](40-1.png)   
 
 
