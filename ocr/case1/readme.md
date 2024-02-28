@@ -8,8 +8,6 @@
 |文本定位 | 直接使用文本块区域检测模型进行文本块定位| 参考 opencv dnn模块样例 或 learnopencv 样例 <br> https://docs.opencv.org/3.4/db/da4/samples_2dnn_2text_detection_8cpp-example.html|       
 |文本筛选 | 选取`编号`，手写区域符号| -|       
 
-
-
 |样式1| 样式2|    
 |--- | ----|    
 |![sample.png](sample.png)|![sample1.png](sample1.png)|    
