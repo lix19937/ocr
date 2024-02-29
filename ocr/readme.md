@@ -21,6 +21,9 @@ learnopencv-master\TextDetectionEAST
 
 + 手写符号识别（x √ o -）   
 
+Handwritten letters Recongition   
+
+
 ## 语义矫正    
 
 ## Ref   
