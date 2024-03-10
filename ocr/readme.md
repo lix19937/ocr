@@ -13,7 +13,7 @@ learnopencv-master\TextDetectionEAST
 
 
 ## 有限域识别    
-
+https://zhuanlan.zhihu.com/p/502358768   
 
 ## 手写识别    
 
