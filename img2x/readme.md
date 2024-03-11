@@ -19,3 +19,6 @@
 图像边缘   
 
 图像线段检测   
+
+
+https://www.geeksforgeeks.org/python-opencv-cv2-erode-method/?ref=lbp   
