@@ -1,0 +1,83 @@
+1)数据集的路径写入到train.txt,       
+读取char_dict,label,
+遍历读取某文件夹下的图片
+获取每张图片的路径及label('_'之后'.png'之前的字符串)
+查询label是否存在于label列表.
+将label长度小于37的写入到大的字符串数组.
+将字符串数组中的图片地址写入到train.txt.
+如有新增的图片数据,则追加写入到train.txt.
+
+2)训练部分:
+
+2.1)数据读取:
+读取train.txt中图片的绝对路径存入到imagefiles=['***','***',...,'pathn'],路径格式如下:
+/home/chenjunxia/tmp/cnn_lstm_ctc/data/1/poc63916_氯化钠注射液.png
+按照5万张一批进行数据的预处理,防止200万张一起做处理内存溢出.
+数据的预处理包括resize image(32,160),/255.获取'_'之后'.png'之前的标签序列,并按照(imgarr,tmp)的形式存储成一个数组.
+
+
+train_epoches = 1000
+batch_image = 50000
+for it in range(0, train_epoches):
+	for iter in range((len(imagefiles) // batch_image)):
+		train_data = load_data_big(imagepath)
+		#按照batch_size=32将train_data分成小的batch.
+		for b in [train_data[x * batch_size:x * batch_size + batch_size] for x in
+		  range(0, int(len(train_data) / batch_size))]:
+			in_data, labels, data_seq_len = zip(*b)
+
+
+2.2)data_targets:
+labels转成index numpy,并用稀疏矩阵表示.
+
+
+data_targets = np.asarray([label_to_array(lbl, data_dict) for lbl in labels])
+
+					data_targets = sparse_tuple_from(data_targets)
+
+
+2.3)logits的计算
+cnn+lstm+ctc:
+inputs = tf.placeholder(tf.float32, [batch_size, 32, 160, 1], name='inputs')
+crnn = CRNN(inputs)
+logits = tf.reshape(crnn, [-1, 512])  # (batchsize x 37) x 512
+
+W = tf.Variable(tf.truncated_normal([512, config.NUM_CLASSES], stddev=0.1, dtype=tf.float32), name="W")
+b = tf.Variable(tf.constant(0., shape=[config.NUM_CLASSES], dtype=tf.float32), name="b")
+print(logits.get_shape())
+
+logits = tf.matmul(logits, W) + b
+print(logits.get_shape())
+logits = tf.reshape(logits, [batch_size, -1, config.NUM_CLASSES])  # batch_size x 36
+
+CRNN:
+
+
+2.4)in_data,data_targets,logits构建好,可以直接训练.
+
+loss = tf.nn.ctc_loss(targets, logits, seq_len)
+cost = tf.reduce_mean(loss)
+optimizer = tf.train.AdadeltaOptimizer(learning_rate=0.1).minimize(loss=cost, global_step=global_step)
+costacc, _ = sess.run(
+
+						[cost, optimizer],
+						{
+							inputs: in_data,
+							targets: data_targets,
+							seq_len: data_seq_len
+						}
+					)
+保存模型
+
+
+
+
+		
+		
+		
+
+
+
+
+
+
