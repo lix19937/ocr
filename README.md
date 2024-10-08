@@ -13,6 +13,9 @@
 ## 去字幕  
 https://github.com/YaoFANGUK/video-subtitle-remover/tree/main    
 
+## emoji表情   
+[emoji](./emoji)
+
 ## 更多  
 https://github.com/spmallick/learnopencv/tree/master    
 
