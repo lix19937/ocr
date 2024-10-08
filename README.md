@@ -6,6 +6,7 @@
 ## 手写字符识别    
 
 ## 印刷字识别     
+[cnn_rnn_summary](./cnn_rnn_summary)    
 
 ## 手势识别    
 
