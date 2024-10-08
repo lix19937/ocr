@@ -1,7 +1,7 @@
 # ocr   
 
-## 直播相关  
-[直播间背后的图像技术 The image process skill behind the live broadcast room](./onlive/onlive.md)
+## 直播背后相关  
+[The image process skill behind the live broadcast room](./onlive/onlive.md)
 
 ## 手写字符识别    
 
