@@ -1,6 +1,6 @@
 # cv-cookbook
 
-[直播间背后的图像技术 The image process skill behind the live broadcast room](./onlive/on_live.md)
+[直播间背后的图像技术 The image process skill behind the live broadcast room](./onlive/onlive.md)
 
 ## 去字幕  
 https://github.com/YaoFANGUK/video-subtitle-remover/tree/main    
