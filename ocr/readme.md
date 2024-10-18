@@ -31,6 +31,7 @@ https://zhuanlan.zhihu.com/p/502358768
 
 Handwritten letters Recongition   
 
+https://github.com/HumanSignal/labelImg/releases   
 
 ## 语义矫正    
 
