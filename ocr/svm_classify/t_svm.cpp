@@ -694,7 +694,7 @@ void train_main(int samplenum,int classnum){
 	//////Parms: C = 12.500000, P = 0.000000,gamma = 0.506250   2 class  for  shang  0822
 	//////Parms: C = 2.500000, P = 0.000000,gamma = 0.506250    2 class  for  shang  0825
 	printf("\nParms: C = %f, P = %f,gamma = %f \n", C, P, gamma);//c=12.5 p=0 gamma=0.506250 for hjdx train_auto
-	//
+	//////  C  P  gamma  type will save in xml file   
 }
 
 static void modifybrightness(Mat &src){
