@@ -706,14 +706,17 @@ static void modifybrightness(Mat &src){
 	convertScaleAbs(src, src, 128 / avgbrightness.val[0], 0);///128
 }
 
-#define TRAIN_ONf
-int main9994(){
+#define TRAIN_ON_F
+
+int main(){
 	char   buffer[256];
 	_getcwd(buffer, 256);
 	printf("The   current   directory   is:   %s ", buffer);
 
 #ifdef TRAIN_ON
-	//训练SVM模型
+	//
+	// train model  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//
 	/*
 	int samplenum =230 + 223 + 222+  +217 + 216*3 + 1419;// 8;   data3
 	//int samplenum = 409 + 407 + 406 + 216 * 2 + +414 + 400+ 1434;// 8;   data4
@@ -750,7 +753,10 @@ int main9994(){
 	train_main(samplenum, classnum);
 
 	//以上用来训练SVM模型,如果模型已经训练好，可以直接读取模型来进行测试。
-#else
+#else 
+	//
+	// test model   ----------------------------------------------------------
+	// 
 	mysvm svm;
 	svm.clear();
 
@@ -760,10 +766,11 @@ int main9994(){
 	}
 
 	vector<string> files;
-	string path_test = "E:/新建文件夹/";
+	string path_test = "E:/newout/";
 	//string path_test = "D:/adaboost_train_10_lp2/test_etc/opencv249_prj/neg_p/";////pei
 	//string path_test = "D:/adaboost_train_2_ju_all_svm_train/test_etc/svm_2_classes_pei_train/data3/0/"; //"D:/adaboost_train_8_sfz/test_etc/opencv249_prj/pos_3/";//"D:/ju_neg_svm/";//"D:/adaboost_train_7_yang/test_etc/opencv249_prj/neg/" ;//"D:/addr/" ;// /* "D:/adaboost_train_6_jing/test_etc/opencv249_prj/neg/";/ */"D:/adaboost_train_6_jing/test_etc/opencv249_prj/pos/";
 	//string path_test = "D:\\adaboost_train_ju\\test_etc\\data3\\7/";
+	
 	readimgnamefromfile((path_test ).c_str(), files);
 
 	for (int i = 0; i < files.size(); ++i){
