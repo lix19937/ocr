@@ -3,18 +3,20 @@
 #include "highgui.h"  
 #include <ml.h>  
 #include <opencv2/ml/ml.hpp>
+#include "mysvm.h"
+
 #include <iostream>    
 #include <fstream>    
 #include <string>    
 #include <vector>
-#include<io.h>
+#include <io.h>
 #include <stdlib.h> 
-#include "mysvm.h"
+
 
 #include  <direct.h>  
 #include  <stdio.h>  
 #include  <Windows.h>
-#include <stdlib.h>
+#include  <stdlib.h>
 
 using namespace cv;
 using namespace std;
@@ -32,13 +34,13 @@ Size winSize = Size(32, 32); // 32 32
 ((winSize.height - 16) / 8 + 1) )
 
 string filepath = "..\\data_all\\";
-int classes = 3;//31;  //Í¼ÏñÀà±ğÊı31     Æ±  ¾İ   ÉÏ   ¾©   Ñë   Õï  ×¡  
-int size = 32; //32;  //Í¼Ïñ´óĞ¡32
-int train_samples =  1000; // 50;  //Ã¿Ò»ÀàµÄÑù±¾Êı
+int classes = 3;//31;  //å›¾åƒç±»åˆ«æ•°31     ç¥¨  æ®   ä¸Š   äº¬   å¤®   è¯Š  ä½  
+int size = 32; //32;  //å›¾åƒå¤§å°32
+int train_samples =  1000; // 50;  //æ¯ä¸€ç±»çš„æ ·æœ¬æ•°
 string num = "012345678";//"0123456789,-";
-char word[] = "XXÆ±¾İÉÏ¾©ÑëÕï×¡ËÕ";//"ÁãÒ¼·¡ÈşËÁÎéÂ½Æâ°Æ¾ÁÔª¸ºÍòÇª°ÛÊ°Õû½Ç·ÖÔ²";
+char word[] = "XXç¥¨æ®ä¸Šäº¬å¤®è¯Šä½è‹";//"é›¶å£¹è´°åè‚†ä¼é™†æŸ’æŒç–å…ƒè´Ÿä¸‡ä»Ÿä½°æ‹¾æ•´è§’åˆ†åœ†";
 
-                                               //////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!change  2
+//////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!change  2
 
 //const std::string svm_file = "../svm_8_classes_train/ADABOOST_SVM_RBF_GRAY20_0820.XML";
 //const std::string samples_path = "../svm_8_classes_train/data3/";
@@ -64,18 +66,17 @@ const std::string samples_path = "../svm_2_classes_shen_train/data3/";
 //const std::string svm_file = "../svm_2_classes_pei_train/ADABOOST_SVM_RBF_PEI_GRAY2_0904.XML";
 //const std::string samples_path = "../svm_2_classes_pei_train/data3/";
 
- //char word_test[] =  "XXÆ±¾İÉÏ¾©ÑëÕï×¡ËÕ";//"ÁãÒ¼·¡ÈşËÁÎéÂ½Æâ°Æ¾ÁÊ°ÔªÔ²Çª°Û½Ç·ÖÕûÍòNN"; //NN´ú±íÔëÉùÍ¼Ïñ
-
+//char word_test[] =  "XXç¥¨æ®ä¸Šäº¬å¤®è¯Šä½è‹";//"é›¶å£¹è´°åè‚†ä¼é™†æŸ’æŒç–æ‹¾å…ƒåœ†ä»Ÿä½°è§’åˆ†æ•´ä¸‡NN"; //NNä»£è¡¨å™ªå£°å›¾åƒ
 
 ////////!!!!!change  3
-//char word_test[] = "XXÒø";// 
-//char word_test[] = "XXÉí";// 
+//char word_test[] = "XXé“¶";// 
+//char word_test[] = "XXèº«";// 
 
-//char word_test[] = "XXÅâ";// 
+//char word_test[] = "XXèµ”";// 
 
-char word_test[] = "XXÉê";
+char word_test[] = "XXç”³";
 
-//»ñÈ¡ÎÄ¼ş¼ĞÏÂµÄËùÓĞÎÄ¼şÃû
+//è·å–æ–‡ä»¶å¤¹ä¸‹çš„æ‰€æœ‰æ–‡ä»¶å
 void getFiles(string path, vector<string>& files)
 {
 	long   hFile = 0;
@@ -134,7 +135,7 @@ void getdata(Mat &trainData, Mat &trainClasses){
 	}
 }
 
-// LPCWSTR×ªstring
+// LPCWSTRè½¬string
 std::string WChar2Ansi(LPCWSTR pwszSrc){
 	int nLen = WideCharToMultiByte(CP_ACP, 0, pwszSrc, -1, NULL, 0, NULL, NULL);
 	if (nLen <= 0) return std::string("");
@@ -154,17 +155,17 @@ void readimgnamefromfile(const char* fileName, std::vector<std::string> &imgname
 	int i = 0;
 	char tempFilePath[MAX_PATH + 1];
 	char tempFileName[256];
-	// ×ª»»ÊäÈëÎÄ¼şÃû
+	// è½¬æ¢è¾“å…¥æ–‡ä»¶å
 	sprintf_s(tempFilePath, "%s/*", fileName);
-	// ¶à×Ö½Ú×ª»»
+	// å¤šå­—èŠ‚è½¬æ¢
 	WCHAR   wstr[MAX_PATH] = { 0 };
 	MultiByteToWideChar(CP_ACP, 0, tempFilePath, -1, wstr, sizeof(wstr));
-	// ²éÕÒ¸ÃÎÄ¼ş´ı²Ù×÷ÎÄ¼şµÄÏà¹ØÊôĞÔ¶ÁÈ¡µ½WIN32_FIND_DATA
+	// æŸ¥æ‰¾è¯¥æ–‡ä»¶å¾…æ“ä½œæ–‡ä»¶çš„ç›¸å…³å±æ€§è¯»å–åˆ°WIN32_FIND_DATA
 	HANDLE handle = FindFirstFile(wstr, &file);
 	if (handle != INVALID_HANDLE_VALUE) {
 		FindNextFile(handle, &file);
 		FindNextFile(handle, &file);
-		// Ñ­»·±éÀúµÃµ½ÎÄ¼ş¼ĞµÄËùÓĞÎÄ¼şÃû    
+		// å¾ªç¯éå†å¾—åˆ°æ–‡ä»¶å¤¹çš„æ‰€æœ‰æ–‡ä»¶å    
 		do {
 			sprintf(tempFileName, "%s", fileName);
 			imgnames.push_back(WChar2Ansi(file.cFileName));
@@ -180,13 +181,13 @@ void readimgnamefromfile(const char* fileName, std::vector<std::string> &imgname
 	FindClose(handle);
 }
 
-//¶ÁÈ¡·¢Æ±ÎÄ¼ş²ÃÏÂÀ´µÄ×Ö·ûÑµÁ·¼¯
+//è¯»å–å‘ç¥¨æ–‡ä»¶è£ä¸‹æ¥çš„å­—ç¬¦è®­ç»ƒé›†
 void getdata_(Mat &trainData, Mat &trainClasses,int samplenum,int classnum){
 	Mat src_image;
 	Mat prs_image;
 	Mat data;
 	string file;
-	//int size = 32;/////////////////¶ÔÓÚºº×Ö 
+	//int size = 32;/////////////////å¯¹äºæ±‰å­— 
 
 	unsigned long n;
 	trainData = Mat::zeros(samplenum, hog_feature_nums/*324*/, CV_32FC1);////////
@@ -254,7 +255,7 @@ void test_number(mysvm &svm){
 	//	cout << word[t * 2] << word[t * 2 + 1] << endl;;
 	//}
 	/*cout << ret << endl;*/
-	cout << word_test[ret * 2] << word_test[ret * 2 + 1]<<"£º"<<sum_ret<<endl;
+	cout << word_test[ret * 2] << word_test[ret * 2 + 1]<<"ï¼š"<<sum_ret<<endl;
 	delete[] data;
 }
 
@@ -296,7 +297,7 @@ void test(mysvm &svm, Mat &img, const std::string &flg){
 		//cout << flg << ", p:"<< sum_ret << std::endl;
 	}
 #ifdef zhen_svm_
-	if (word == "Õï") { 
+	if (word == "è¯Š") { 
 		cout << "+++++++++" << flg << std::endl; 
 		std::string tt;
 		size_t pos = flg.find_last_of("/");
@@ -307,13 +308,13 @@ void test(mysvm &svm, Mat &img, const std::string &flg){
 		}	
 	}
 #else   
-	if (word != "Åâ") {
-		cout << flg << ", ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªp:" << sum_ret << std::endl;
+	if (word != "èµ”") {
+		cout << flg << ", â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”p:" << sum_ret << std::endl;
 		std::string tt;
 		size_t pos = flg.find_last_of("/");
 		if (pos != std::string::npos){
 			tt = flg.substr(pos + 1);
-		 	imwrite("C:/Users/Administrator/Desktop/ĞÂ½¨ÎÄ¼ş¼Ğ (2)/" + tt, img);
+		 	imwrite("C:/Users/Administrator/Desktop/æ–°å»ºæ–‡ä»¶å¤¹ (2)/" + tt, img);
 		//	remove(flg.c_str());
 		}
 	}
@@ -423,7 +424,7 @@ void cut_image(vector<string> &files, vector<Mat> &result_img){
 		vector<int> xblank;
 		Mat element = getStructuringElement(MORPH_RECT, Size(1, 1));
 		Mat img_ = img(Rect(0, yblank[i], img.cols, yblank[i + 1] - yblank[i]));
-		morphologyEx(img_, img_, MORPH_OPEN, element); //·ÀÖ¹×ÖµÄºÚµãÌ«Ï¡Êè
+		morphologyEx(img_, img_, MORPH_OPEN, element); //é˜²æ­¢å­—çš„é»‘ç‚¹å¤ªç¨€ç–
 		widthcut(img_, xblank);
 		if (xblank.size() == 0) {
 			return;
@@ -445,7 +446,7 @@ void cut_image(vector<string> &files, vector<Mat> &result_img){
 	}
 }
 
-//cut_imageº¯ÊıÖØÔØ£¬²î±ğÊÇ´«ÈëµÄ²ÎÊı²»Í¬£¬º¯ÊıÄÚÈİ»ù±¾ÏàÍ¬
+//cut_imageå‡½æ•°é‡è½½ï¼Œå·®åˆ«æ˜¯ä¼ å…¥çš„å‚æ•°ä¸åŒï¼Œå‡½æ•°å†…å®¹åŸºæœ¬ç›¸åŒ
 void cut_image(Mat &img, vector<Mat> &result_img){
 	Mat dst = img.clone();
 	double threshreturn = threshold(img.clone(), img, 0, 255, CV_THRESH_OTSU);
@@ -482,7 +483,7 @@ void cut_image(Mat &img, vector<Mat> &result_img){
 		vector<int> xblank;
 		Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));//better than size(1,1)
 		Mat img_ = img(Rect(0, rowbegin, img.cols, rowend - rowbegin));
-		morphologyEx(img_, img_, MORPH_OPEN, element); //·ÀÖ¹×ÖµÄºÚµãÌ«Ï¡Êè
+		morphologyEx(img_, img_, MORPH_OPEN, element); //é˜²æ­¢å­—çš„é»‘ç‚¹å¤ªç¨€ç–
 		imshow("morphexopen img", img_);
 		widthcut(img_, xblank);
 		if (xblank.size() == 0) {
@@ -521,7 +522,7 @@ void cut_image(Mat &img, vector<Mat> &result_img){
 					if (xblank[j + 1] - xblank[j] <= widthminlow)continue;
 				}//end if/else
 			}
-			//Ò»¸ö×ÖµÄ¿í¶È´óÔ¼ÊÇ38ÏñËØ
+			//ä¸€ä¸ªå­—çš„å®½åº¦å¤§çº¦æ˜¯38åƒç´ 
 			if (xblank[j + 1] - xblank[j] >= 45){
 				int tmp = round(((double)(xblank[j + 1] - xblank[j])) / 38.0);
 				int gap = (xblank[j + 1] - xblank[j]) / tmp;
@@ -536,7 +537,7 @@ void cut_image(Mat &img, vector<Mat> &result_img){
 	imshow("rectangle dst", dst);
 }
 
-//È¥³ıºá¹áÎÄ×ÖµÄÖ±Ïß
+//å»é™¤æ¨ªè´¯æ–‡å­—çš„ç›´çº¿
 Mat erase_redline(vector<string> &files, vector<Mat> &result_img, int index){
 	Mat src_img = imread(files[index]);
 	//Mat color_img = src_img.clone();//to be continued
@@ -597,7 +598,7 @@ Mat erase_redline(vector<string> &files, vector<Mat> &result_img, int index){
 				if (up + down < 8)
 				{
 					for (int i = -up; i <= down && (row + i<img.rows) && (row + i >= 0); i++){
-						src_img.at<uchar>(row + i, col) = 136; //136ÊÇÒòÎªÕâ¸öÖµºÍ±³¾°É«½Ó½ü
+						src_img.at<uchar>(row + i, col) = 136; //136æ˜¯å› ä¸ºè¿™ä¸ªå€¼å’ŒèƒŒæ™¯è‰²æ¥è¿‘
 					}
 				}
 			}
@@ -607,7 +608,7 @@ Mat erase_redline(vector<string> &files, vector<Mat> &result_img, int index){
 	return src_img;
 }
 
-//³¢ÊÔÈ¥³ıÑÕÉ«£¬Ê§°Ü
+//å°è¯•å»é™¤é¢œè‰²ï¼Œå¤±è´¥
 void erase_color(vector<string> &files){
 	Mat src_img = imread(files[3]);
 	Mat img;
@@ -647,17 +648,17 @@ void train_main(int samplenum,int classnum){
 	CvSVMParams params;
 	params.svm_type = CvSVM::C_SVC;
 	params.kernel_type = CvSVM::RBF;//c=12.5 p=0 gamma=0.506250 for hjdx
-	params.C = 2.500000;  // ËğÊ§º¯Êı
-	params.p = 0;  //ÉèÖÃe-SVRÖĞËğÊ§º¯ÊıÖµ  
-	params.gamma = 0.506250; // 0.506250; Õë¶Ô¶àÏîÊ½¡¢rbf¡¢sigmoidºËº¯ÊıÉèÖÃ²ÎÊı 
-	params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER + CV_TERMCRIT_EPS, 2000, 5e-3);////SVMÑµÁ·ÖÕÖ¹Ìõ¼ş  
+	params.C = 2.500000;  // æŸå¤±å‡½æ•°
+	params.p = 0;  //è®¾ç½®e-SVRä¸­æŸå¤±å‡½æ•°å€¼  
+	params.gamma = 0.506250; // 0.506250; é’ˆå¯¹å¤šé¡¹å¼ã€rbfã€sigmoidæ ¸å‡½æ•°è®¾ç½®å‚æ•° 
+	params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER + CV_TERMCRIT_EPS, 2000, 5e-3);////SVMè®­ç»ƒç»ˆæ­¢æ¡ä»¶  
 	//params.term_crit = cvTermCriteria(CV_TERMCRIT_EPS, 100, 5e-3);
-	//params.class_weights         classWeights; // C-SVCÈ¨ÖØ  
+	//params.class_weights         classWeights; // C-SVCæƒé‡  
 	/*
-	class_weights:C_SVCÖĞµÄ¿ÉÑ¡È¨ÖØ£¬¸³¸øÖ¸¶¨µÄÀà£¬³ËÒÔCÒÔºó±ä³Éclass_weightssi*C¡£ÕâĞ©È¨ÖØÓ°Ïì²»Í¬Àà±ğµÄ´íÎó·ÖÀà³Í·£Ïî¡£È¨ÖØÔ½´ó£¬Ä³Ò»ÀàµÄÎó·ÖÀàÊı¾İµÄ³Í·£Ïî¾ÍÔ½´ó¡£
-    term_crit:SVMµÄÑµÁ·¹ı³ÌµÄÖÕÖ¹Ìõ¼ş£¬½â¾ö²¿·ÖÊÜÔ¼Êø¶ş´Î×îÓÅÎÊÌâ¡£¿ÉÒÔÖ¸¶¨¹«²îºÍ/»ò×î´óµü´ú´ÎÊı¡£
+	class_weights:C_SVCä¸­çš„å¯é€‰æƒé‡ï¼Œèµ‹ç»™æŒ‡å®šçš„ç±»ï¼Œä¹˜ä»¥Cä»¥åå˜æˆclass_weightssi*Cã€‚è¿™äº›æƒé‡å½±å“ä¸åŒç±»åˆ«çš„é”™è¯¯åˆ†ç±»æƒ©ç½šé¡¹ã€‚æƒé‡è¶Šå¤§ï¼ŒæŸä¸€ç±»çš„è¯¯åˆ†ç±»æ•°æ®çš„æƒ©ç½šé¡¹å°±è¶Šå¤§ã€‚
+    term_crit:SVMçš„è®­ç»ƒè¿‡ç¨‹çš„ç»ˆæ­¢æ¡ä»¶ï¼Œè§£å†³éƒ¨åˆ†å—çº¦æŸäºŒæ¬¡æœ€ä¼˜é—®é¢˜ã€‚å¯ä»¥æŒ‡å®šå…¬å·®å’Œ/æˆ–æœ€å¤§è¿­ä»£æ¬¡æ•°ã€‚
 	*/
-	//¶Ô²»ÓÃµÄ²ÎÊıstepÉèÎª0  
+	//å¯¹ä¸ç”¨çš„å‚æ•°stepè®¾ä¸º0  
 	CvParamGrid nuGrid = CvParamGrid(1, 1, 0.0);
 	CvParamGrid coeffGrid = CvParamGrid(1, 1, 0.0);
 	CvParamGrid degreeGrid = CvParamGrid(1, 1, 0.0);
@@ -667,12 +668,13 @@ void train_main(int samplenum,int classnum){
 	start = time(NULL);
 
 	//svm.train(trainData, trainClasses, Mat(), Mat(), params);
+	//
 	 svm.train_auto(trainData, trainClasses, Mat(), Mat(), params, 10, svm.get_default_grid(CvSVM::C), svm.get_default_grid(CvSVM::GAMMA), svm.get_default_grid(CvSVM::P), nuGrid, coeffGrid, degreeGrid);//true is two-class probelm
 	 
 	 stop = time(NULL);
 	 printf("Use Time:%ld(s)\t %f\n", (stop - start), (stop - start)/3600.0);	
-	svm.save(svm_file.c_str());
-	printf("end training.\n");
+	 svm.save(svm_file.c_str());
+	 printf("end training.\n");
 
 	//end training
 	//output optimal params
@@ -680,6 +682,7 @@ void train_main(int samplenum,int classnum){
 	float C = params_re.C;
 	float P = params_re.p;
 	float gamma = params_re.gamma;
+	
 	//////Parms: C = 312.500000, P = 0.000000,gamma = 0.002250  8 classes for all word
 	//////Parms: C = 12.500000, P = 0.000000,gamma = 0.506250   2 class  for  shang  0804
 	//////Parms: C = 12.500000, P = 0.000000,gamma = 0.506250    2 class  for  zhen  0807
@@ -710,7 +713,7 @@ int main9994(){
 	printf("The   current   directory   is:   %s ", buffer);
 
 #ifdef TRAIN_ON
-	//ÑµÁ·SVMÄ£ĞÍ
+	//è®­ç»ƒSVMæ¨¡å‹
 	/*
 	int samplenum =230 + 223 + 222+  +217 + 216*3 + 1419;// 8;   data3
 	//int samplenum = 409 + 407 + 406 + 216 * 2 + +414 + 400+ 1434;// 8;   data4
@@ -746,7 +749,7 @@ int main9994(){
 
 	train_main(samplenum, classnum);
 
-	//ÒÔÉÏÓÃÀ´ÑµÁ·SVMÄ£ĞÍ,Èç¹ûÄ£ĞÍÒÑ¾­ÑµÁ·ºÃ£¬¿ÉÒÔÖ±½Ó¶ÁÈ¡Ä£ĞÍÀ´½øĞĞ²âÊÔ¡£
+	//ä»¥ä¸Šç”¨æ¥è®­ç»ƒSVMæ¨¡å‹,å¦‚æœæ¨¡å‹å·²ç»è®­ç»ƒå¥½ï¼Œå¯ä»¥ç›´æ¥è¯»å–æ¨¡å‹æ¥è¿›è¡Œæµ‹è¯•ã€‚
 #else
 	mysvm svm;
 	svm.clear();
@@ -757,7 +760,7 @@ int main9994(){
 	}
 
 	vector<string> files;
-	string path_test = "E:/ĞÂ½¨ÎÄ¼ş¼Ğ/";
+	string path_test = "E:/æ–°å»ºæ–‡ä»¶å¤¹/";
 	//string path_test = "D:/adaboost_train_10_lp2/test_etc/opencv249_prj/neg_p/";////pei
 	//string path_test = "D:/adaboost_train_2_ju_all_svm_train/test_etc/svm_2_classes_pei_train/data3/0/"; //"D:/adaboost_train_8_sfz/test_etc/opencv249_prj/pos_3/";//"D:/ju_neg_svm/";//"D:/adaboost_train_7_yang/test_etc/opencv249_prj/neg/" ;//"D:/addr/" ;// /* "D:/adaboost_train_6_jing/test_etc/opencv249_prj/neg/";/ */"D:/adaboost_train_6_jing/test_etc/opencv249_prj/pos/";
 	//string path_test = "D:\\adaboost_train_ju\\test_etc\\data3\\7/";
