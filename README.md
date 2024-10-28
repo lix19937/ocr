@@ -1,23 +1,23 @@
 # ocr   
 
-### 直播背后相关  
+### Related behind the live broadcast    
 [The image process skill behind the live broadcast room](./onlive/onlive.md)
 
-### 手写字符识别    
+### Handwritten character recognition        
 
-### 印刷字（如医疗票据）识别     
+### Identification of printed characters (such as medical receipts)         
 [cnn_rnn_summary](./cnn_rnn_summary)    
 
-### 手势识别    
+### Gesture recognition       
 
-### 去字幕  
+### Remove subtitles     
 https://github.com/YaoFANGUK/video-subtitle-remover/tree/main    
 
-### emoji表情   
+### Emoji      
 [emoji](./emoji)
 
-### 更多  
+### More     
 https://github.com/spmallick/learnopencv/tree/master    
 
-### OPENCV 志愿者   
+### OPENCV volunteer     
 https://www.opencv.org.cn/?page_id=639   
