@@ -4,6 +4,7 @@
 [The image process skill behind the live broadcast room](./onlive/onlive.md)
 
 ### Handwritten character recognition        
+[Handwritten character](./ocr/digits_classification)
 
 ### Identification of printed characters (such as medical receipts)         
 [cnn_rnn_summary](./cnn_rnn_summary)    
