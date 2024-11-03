@@ -1,7 +1,7 @@
 # Fasic CV SDK
 
 This repo is for Fasic project.
-A thrift based server is provoded by the project.
+A **thrift** based server is provoded by the project.
 
 ---
 
