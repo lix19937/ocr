@@ -1,7 +1,7 @@
 # ocr   
 
 ### Related behind the live broadcast    
-[The image process skill behind the live broadcast room](./onlive/onlive.md)
+[The image process skill behind the live broadcast room](./onlive/readme.md)
 
 ### Handwritten character recognition        
 [Handwritten character](./ocr/digits_classification)
