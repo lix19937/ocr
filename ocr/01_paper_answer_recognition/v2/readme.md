@@ -2,7 +2,12 @@
 + 依赖环境搭建    
 
   + docker 导出
-    ```bash   
+    ```bash
+    (torch210) gwm@SHJS-PF4ZKYLL:~/workspaces/python$ docker ps -a
+    CONTAINER ID   IMAGE                                                COMMAND                   CREATED        STATUS                     PORTS     NAMES
+    2abb3aa0771b   ocr_docker_v1                                        "/bin/bash"               11 days ago    Up 2 days                            recursing_antonelli
+    
+
      docker export 2abb3aa0771b > ocr_v1_export_backup.tar   
     ```
     2abb3aa0771b 为容器名    
