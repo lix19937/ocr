@@ -31,7 +31,7 @@
         
         ├── YOLOX_outputs           # ckpt 文件  
         ├── exps                    # 网络配置文件   
-        ├── input                   # 输入
+        ├── input                   # 输入，用户可以将待测试图片放到此目录下   
         ├── km                      # 核心代码，具体内容见下文   
         ├── lix_answer_dnn          # answer 网络训练
         ├── lix_answer_dnn_unittest # answer 网络预测单元测试   
@@ -61,7 +61,10 @@
         └── tools                  # 测试脚本 （可忽略）
         ```
         
-    + 运行命令
-      ```bash
-      python3 ./km/ocr_pipeline.py    
-      ```  
+    + 运行
+      + input 目录下存放待测试图片    
+      + 在 /open_explorer/YOLOX-main 目录下执行    
+        ```bash
+        python3 ./km/ocr_pipeline.py    
+        ```  
+      + 在output 目录下可以看到可视化结果    
