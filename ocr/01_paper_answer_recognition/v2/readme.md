@@ -3,7 +3,7 @@
 
   + docker 导出
     ```bash
-    (torch210) gwm@SHJS-PF4ZKYLL:~/workspaces/python$ docker ps -a
+    (torch210) lix@SHJS-PF4ZKYLL:~/workspaces/python$ docker ps -a
     CONTAINER ID   IMAGE                                                COMMAND                   CREATED        STATUS                     PORTS     NAMES
     2abb3aa0771b   ocr_docker_v1                                        "/bin/bash"               11 days ago    Up 2 days                            recursing_antonelli
     
@@ -16,9 +16,14 @@
     ```bash
      docker import ocr_v1_export_backup.tar mytest:v1
      docker run -it -v   ${spec_local_path}/:/open_explorer  --shm-size 128G   mytest:v1  /bin/bash
-
     ```
-    
+  + 验证
+    ```bash   
+      (torch210) lix@SHJS-PF4ZKYLL:~/workspaces/python$ docker ps -a
+      CONTAINER ID   IMAGE                                                COMMAND                   CREATED        STATUS                     PORTS     NAMES
+      da75400919b1   mytest:v1                                            "/bin/bash"               2 days ago     Up 2 days                            serene_fermi
+      2abb3aa0771b   ocr_docker_v1                                        "/bin/bash"               11 days ago    Up 2 days                            recursing_antonelli
+    ```    
 +  源码工程说明     
     +  目录
         ```
