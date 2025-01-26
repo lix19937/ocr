@@ -67,4 +67,7 @@
         ```bash
         python3 ./km/ocr_pipeline.py    
         ```  
-      + 在output 目录下可以看到可视化结果    
+      + 在output 目录下可以看到可视化结果
+
+    + 网络迭代与预测性能提升 （如answer 模型优化）
+      +   
