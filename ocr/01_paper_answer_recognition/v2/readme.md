@@ -39,13 +39,13 @@
         ├── doc                    # 字体
         ├── inference              # 网络模型文件
         ├── inference_results      # 数字识别模型测试输出目录
-        ├── model.pth              # answer模型文件   
-        ├── ocr_answer.py          # answer定位识别数据流
+        ├── model.pth              # answer 模型文件   
+        ├── ocr_answer.py          # answer 定位识别数据流
         ├── ocr_pipeline.py        # 总数据流
         ├── ocr_uniform.py         # 文本定位规范化
-        ├── paddleocr.py           # answer网络定义 
-        ├── ppocr                  # answer网络定义内部实现    
-        ├── predict_system.py      # answer定位识别中间层  
+        ├── paddleocr.py           # answer 网络定义 
+        ├── ppocr                  # answer 网络定义内部实现    
+        ├── predict_system.py      # answer 定位识别中间层  
         ├── text_crnn_test.py      # crnn 单元测试  
         ├── text_recog.py          # crnn 模型封装  
         └── tools                  # 测试脚本 （可忽略）
